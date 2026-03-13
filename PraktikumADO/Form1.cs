@@ -123,6 +123,25 @@ namespace PraktikumADO
             }
         }
 
+        // LATIHAN 2: Update SKS Mata Kuliah
+        private void btnUpdateSKS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                koneksi();
+                conn.Open();
+                string query = "UPDATE MataKuliah SET SKS = 4 WHERE KodeMK = 'IF210101'";
+                cmd = new MySqlCommand(query, conn);
+                int hasil = cmd.ExecuteNonQuery();
+                MessageBox.Show("Jumlah baris terpengaruh : " + hasil, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         
     }
 }
