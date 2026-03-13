@@ -90,7 +90,7 @@ namespace PraktikumADO
             {
                 koneksi();
                 conn.Open();
-                string query = "";
+                string query = "UPDATE Mahasiswa SET Alamat = 'Yogyakarta' WHERE NIM = '23110100001'";
                 cmd = new MySqlCommand(query, conn);
                 int hasil = cmd.ExecuteNonQuery();
                 MessageBox.Show("Jumlah baris terpengaruh : " + hasil, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
