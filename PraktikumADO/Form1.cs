@@ -44,7 +44,7 @@ namespace PraktikumADO
             {
                 koneksi();
                 conn.Open();
-                string query = "";
+                string query = "SELECT COUNT(*) FROM Mahasiswa";
                 cmd = new MySqlCommand(query, conn);
 
                 // ✅ PERBAIKAN: Gunakan Convert.ToInt32 untuk mengatasi masalah cast
