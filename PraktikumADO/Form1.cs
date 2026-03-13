@@ -142,6 +142,38 @@ namespace PraktikumADO
             }
         }
 
-        
+        // LATIHAN 3: Insert Program Studi (dengan pengecekan)
+        private void btnInsertProdi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                koneksi();
+                conn.Open();
+
+                string cekQuery = "SELECT COUNT(*) FROM ProgramStudi WHERE KodeProdi = 'MI01'";
+                cmd = new MySqlCommand(cekQuery, conn);
+                long existingCount = (long)cmd.ExecuteScalar();
+
+                if (existingCount > 0)
+                {
+                    MessageBox.Show("Data dengan kode MI01 sudah ada di database!", "Peringatan",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    string insertQuery = "INSERT INTO ProgramStudi VALUES ('MI01','Manajemen Informatika')";
+                    cmd = new MySqlCommand(insertQuery, conn);
+                    int hasil = cmd.ExecuteNonQuery();
+                    MessageBox.Show("Data berhasil ditambahkan! Jumlah baris terpengaruh : " + hasil,
+                                    "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
