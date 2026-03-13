@@ -37,6 +37,29 @@ namespace PraktikumADO
             }
         }
 
+        // Menggunakan ExecuteScalar() - Menghitung Jumlah Mahasiswa
+        private void btnHitungMhs_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                koneksi();
+                conn.Open();
+                string query = "";
+                cmd = new MySqlCommand(query, conn);
+
+                // ✅ PERBAIKAN: Gunakan Convert.ToInt32 untuk mengatasi masalah cast
+                long jumlahLong = (long)cmd.ExecuteScalar();
+                int jumlah = Convert.ToInt32(jumlahLong);
+
+                txtHasil.Text = jumlah.ToString();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         
     }
 }
