@@ -109,7 +109,7 @@ namespace PraktikumADO
             {
                 koneksi();
                 conn.Open();
-                string query = "";
+                string query = "SELECT COUNT(*) FROM Dosen";
                 cmd = new MySqlCommand(query, conn);
                 long jumlahLong = (long)cmd.ExecuteScalar();
                 int jumlah = Convert.ToInt32(jumlahLong);
