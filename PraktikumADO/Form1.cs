@@ -60,7 +60,7 @@ namespace PraktikumADO
             }
         }
 
-        // Menghitung Jumlah Mata Kuliah 
+        // PMenghitung Jumlah Mata Kuliah 
         private void btnHitungMk_Click(object sender, EventArgs e)
         {
             try
@@ -75,6 +75,25 @@ namespace PraktikumADO
                 int jumlah = Convert.ToInt32(jumlahLong);
 
                 txtHasil.Text = jumlah.ToString();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // Menggunakan ExecuteNonQuery() 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                koneksi();
+                conn.Open();
+                string query = "";
+                cmd = new MySqlCommand(query, conn);
+                int hasil = cmd.ExecuteNonQuery();
+                MessageBox.Show("Jumlah baris terpengaruh : " + hasil, "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 conn.Close();
             }
             catch (Exception ex)
